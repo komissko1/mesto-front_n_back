@@ -1,0 +1,7 @@
+.popup__image-container {
+  margin: auto;
+  height: min-content;
+  display: block;
+  position: relative;
+  transform: translate(0, 22px);
+}

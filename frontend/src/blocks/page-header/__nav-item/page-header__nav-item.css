@@ -1,0 +1,22 @@
+.page-header__nav-item {
+  margin: 0;
+  margin-left: 24px;
+  padding: 0;
+  line-height: 22px;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  text-decoration: none;
+  color: #fff;
+  justify-content: right;
+  opacity: 100%;
+  transition: opacity .5s ease-in-out;
+}
+
+@media screen and (max-width: 320px) {
+  .page-header__nav-item {
+    padding-right: 30px;
+    line-height: 17px;
+    font-size: 14px;
+  }
+}

@@ -1,0 +1,21 @@
+.page-header__logo {
+  margin: 0;
+  padding: 0;
+  width: 142px;
+  object-fit: cover;
+  opacity: 100%;
+  transition: opacity .5s ease-in-out;
+}
+
+@media screen and (max-width: 768px) {
+  .page-header__logo {
+    width: calc(104px + (142 - 104) * (100vw - 320px) / (768 - 320));
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .page-header__logo {
+    padding-left: 27px;
+    width: 104px;
+  }
+}

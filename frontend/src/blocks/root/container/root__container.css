@@ -1,0 +1,18 @@
+.root__container {
+  margin-top: calc(28px + (45 - 28) * ( (100% - 320px) / ( 1280 - 320 )));
+  margin-bottom: calc(36px + (60 - 36) * ( (100% - 320px) / ( 1280 - 320 )));
+  padding-left: calc(19px + (200 - 19) * (100% - 320px) / (1280 - 320));
+  padding-right: calc(19px + (200 - 19) * (100% - 320px) / (1280 - 320));
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+@media screen and (max-width: 320px) {
+  .root__container {
+    margin: 28px 0 36px;
+    padding: 0;
+  }
+}

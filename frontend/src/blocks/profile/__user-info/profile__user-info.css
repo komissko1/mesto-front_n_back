@@ -1,0 +1,26 @@
+.profile__user-info {
+  margin: 0;
+  padding-left: 30px;
+  padding-right: 30px;
+  display: grid;
+  grid-template-columns: 1fr 24px;
+  grid-auto-rows: min-content;
+  gap: 10px 18px;
+  color: #ffffff;
+  align-items: baseline;
+}
+
+@media screen and (max-width: 1024px) {
+  .profile__user-info {
+    padding-top: 23px;
+    padding-bottom: 33px;
+    padding-left: 0;
+    padding-right: 0;
+    box-sizing: border-box;
+    grid-template-columns: 1fr minmax(18px, max-content);
+    gap: 10px 14px;
+    justify-content: center;
+  }
+}
+
+

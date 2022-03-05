@@ -1,0 +1,19 @@
+.place__trash-button {
+  margin: 0;
+  padding: 0;
+  min-width: 18px;
+  min-height: 19px;
+  background-image: url(../../../images/trash.svg);
+  background-color: transparent;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: auto;
+  border-style: none;
+  box-sizing: border-box;
+  transition: opacity .3s ease-in-out;
+  cursor: pointer;
+  position: absolute;
+  top: 18px;
+  right: 15px;
+}
+

@@ -1,0 +1,11 @@
+.content__places {
+  margin: 0;
+  justify-content: center;
+  width: 100%;
+}
+
+@media screen and (max-width: 320px) {
+  .content__places {
+    width: calc(100% - 19px*2);
+  }
+}

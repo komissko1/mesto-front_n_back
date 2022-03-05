@@ -1,0 +1,13 @@
+.place__caption {
+  margin: 0;
+  padding: 22px 21px;
+  box-sizing: border-box;
+  width: 100%;
+  display: grid;
+  align-content: center;
+  grid-template-columns: 224px 22px;
+  grid-template-rows: 22px 13px;
+  row-gap: 3px;
+
+}
+

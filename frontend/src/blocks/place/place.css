@@ -1,0 +1,13 @@
+.place {
+  margin: 0;
+  padding: 0;
+  min-width: 282px;
+  background: #FFFFFF;
+  border-radius: 10px;
+  overflow: hidden;
+  font-size: 0;
+  position: relative;
+}
+
+
+

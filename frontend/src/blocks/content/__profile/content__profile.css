@@ -1,0 +1,12 @@
+.content__profile {
+  margin: 0;
+  padding-bottom: 51px;
+  width: 100%;
+}
+
+@media screen and (max-width: 320px) {
+  .content__profile {
+    padding-bottom: 36px;
+    width: calc(100% - 19px*2);
+  }
+}
