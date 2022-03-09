@@ -11,7 +11,7 @@ const userSchema = new mongoose.Schema({
     validate: {
       validator: (v) => validator.isAlpha(v),
     },
-    default: 'Жак-Ив Кусто',
+    default: 'JacquesIvesCousteau',
   },
   about: {
     type: String,
@@ -20,7 +20,7 @@ const userSchema = new mongoose.Schema({
     validate: {
       validator: (v) => validator.isAlpha(v),
     },
-    default: 'Исследователь',
+    default: 'Researcher',
   },
   avatar: {
     type: String,
