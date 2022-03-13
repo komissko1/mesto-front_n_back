@@ -17,12 +17,13 @@ const app = express();
 app.use(cookieParser());
 
 app.use(cors({
-  origin: 'http://localhost:3001',
+  origin: 'https://mesto-komisarov.students.nomoredomains.work',
   credentials: true,
 }));
 
 const allowedCors = [
   'https://mesto-komisarov.students.nomoredomains.work',
+  'https://mesto-komisarov.nomoredomains.work',
   'http://localhost:3001',
   'http://localhost:3000',
 ];
