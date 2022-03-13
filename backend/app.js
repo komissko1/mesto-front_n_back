@@ -9,7 +9,6 @@ const cors = require('cors');
 const { login } = require('./controllers/login');
 const { createUser } = require('./controllers/createUser');
 const { auth } = require('./middlewares/auth');
-// const { requestLogger, errorLogger } = require ('./middlewares/logger');
 const NotFoundError = require('./errors/NotFoundError');
 
 const { PORT = 3000 } = process.env;
@@ -42,8 +41,6 @@ app.use((req, res, next) => {
   }
   return next();
 });
-
-// app.use(requestLogger);
 
 mongoose.connect('mongodb://localhost:27017/mestodb', {
   useNewUrlParser: true,

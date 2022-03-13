@@ -1,9 +1,5 @@
-export const apiConfig = {
+const apiConfig = {
   baseUrl: "http://localhost:3000",
-  headers: {
-    Authorization: `Bearer ${localStorage.getItem('jwt')}`,
-    "Content-Type": "application/json",
-  },
 };
 
 class Api {
@@ -23,7 +19,9 @@ class Api {
 
   getCardsData() {
     return fetch(this._cardsUrl, {
-      headers: this._headers,
+      headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${localStorage.getItem('jwt')}`},
       credentials: "include",
     }).then(this._checkResponse);
   }
@@ -31,14 +29,19 @@ class Api {
   getUserData() {
     return fetch(this._userUrl, {
       credentials: "include",
-      headers: this._headers,
+      // headers: this._headers,
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem('jwt')}`},
     }).then(this._checkResponse);
   }
 
   postCardData(newName, newLink) {
     return fetch(this._cardsUrl, {
       method: "POST",
-      headers: this._headers,
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem('jwt')}`},
       credentials: "include",
       body: JSON.stringify({
         name: newName,
@@ -50,7 +53,9 @@ class Api {
   patchUserData(newName, newJob) {
     return fetch(this._userUrl, {
       method: "PATCH",
-      headers: this._headers,
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem('jwt')}`},
       credentials: "include",
       body: JSON.stringify({
         name: newName,
@@ -62,7 +67,9 @@ class Api {
   deleteCardData(itemId) {
     return fetch(`${this._cardsUrl}${itemId}`, {
       method: "DELETE",
-      headers: this._headers,
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem('jwt')}`},
       credentials: "include",
     }).then(this._checkResponse);
   }
@@ -71,7 +78,9 @@ class Api {
     const method = status === true ? "DElETE" : "PUT";
     return fetch(`${this._cardsUrl}likes/${itemId}`, {
       method: method,
-      headers: this._headers,
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem('jwt')}`},
       credentials: "include",
     }).then(this._checkResponse);
   }
@@ -79,7 +88,9 @@ class Api {
   patchAvatar(avatarInfo) {
     return fetch(`${this._userUrl}avatar`, {
       method: "PATCH",
-      headers: this._headers,
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem('jwt')}`},
       credentials: "include",
       body: JSON.stringify({ avatar: avatarInfo }),
     }).then(this._checkResponse);

@@ -50,14 +50,14 @@ export const authorize = (password, email) => {
     .catch((err) => console.log(err));
 };
 
-export const getToken = (token) => {
+export const getToken = () => {
   return fetch(`${BASE_URL}/users/me`, {
     method: "GET",
     credentials: 'include',
     headers: {
       'Accept': "application/json",
       "Content-Type": "application/json",
-      // Authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${localStorage.getItem('jwt')}`,
     },
 
   })
