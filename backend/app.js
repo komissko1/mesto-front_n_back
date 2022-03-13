@@ -5,14 +5,45 @@ const { celebrate, Joi, errors } = require('celebrate');
 require('dotenv').config();
 
 const cookieParser = require('cookie-parser');
+const cors = require('cors');
 const { login } = require('./controllers/login');
 const { createUser } = require('./controllers/createUser');
 const { auth } = require('./middlewares/auth');
+// const { requestLogger, errorLogger } = require ('./middlewares/logger');
 const NotFoundError = require('./errors/NotFoundError');
 
 const { PORT = 3000 } = process.env;
 const app = express();
 app.use(cookieParser());
+
+app.use(cors({
+  origin: 'http://localhost:3001',
+  credentials: true,
+}));
+
+const allowedCors = [
+  'https://mesto-komisarov.students.nomoredomains.work',
+  'http://localhost:3001',
+  'http://localhost:3000',
+];
+
+app.use((req, res, next) => {
+  const { origin } = req.headers;
+  if (allowedCors.includes(origin)) {
+    res.header('Access-Control-Allow-Origin', origin);
+  }
+  const { method } = req;
+  const DEFAULT_ALLOWED_METHODS = 'GET,HEAD,PUT,PATCH,POST,DELETE';
+  const requestHeaders = req.headers['access-control-request-headers'];
+  if (method === 'OPTIONS') {
+    res.header('Access-Control-Allow-Methods', DEFAULT_ALLOWED_METHODS);
+    res.header('Access-Control-Allow-Headers', requestHeaders);
+    return res.end();
+  }
+  return next();
+});
+
+// app.use(requestLogger);
 
 mongoose.connect('mongodb://localhost:27017/mestodb', {
   useNewUrlParser: true,

@@ -3,7 +3,7 @@ const NotFoundError = require('../errors/NotFoundError');
 
 module.exports.getUsers = (req, res, next) => {
   User.find({})
-    .then((users) => res.send({ users }))
+    .then((users) => res.send(users))
     .catch(next);
 };
 
@@ -13,7 +13,7 @@ module.exports.getUserById = (req, res, next) => {
       if (!user) {
         throw new NotFoundError('Пользователь не найден');
       } else {
-        res.status(201).send({ user });
+        res.status(201).send(user);
       }
     })
     .catch(next);
@@ -28,7 +28,7 @@ module.exports.updateProfile = (req, res, next) => {
   )
     .orFail()
     .then((user) => {
-      res.status(201).send({ user });
+      res.status(201).send(user);
     })
     .catch(next);
 };
@@ -41,7 +41,7 @@ module.exports.updateAvatar = (req, res, next) => {
     { new: true, runValidators: true },
   )
     .orFail()
-    .then((user) => res.status(201).send({ user }))
+    .then((user) => res.status(201).send(user))
     .catch(next);
 };
 
@@ -51,7 +51,7 @@ module.exports.getCurrentUser = (req, res, next) => {
       if (!user) {
         throw new NotFoundError('Пользователь не найден');
       } else {
-        res.status(201).send({ user });
+        res.status(201).send(user);
       }
     })
     .catch(next);

@@ -19,14 +19,14 @@ function Login({ onLogin, onResponce }) {
     auth
       .authorize(values.password, values.email)
       .then((res) => {
-        if (res.token) {
-          localStorage.setItem('jwt', res.token);
-          onLogin(values.email);
-          navigate("/");
+        if (res.user._id) {
+          localStorage.setItem('jwt', res.user._id);
+          onLogin(res.user.email);
           setValues({
             password: "",
             email: "",
           });
+          navigate("/");
         } else {onResponce(false)}
       })
       .catch((err) => console.log(err));

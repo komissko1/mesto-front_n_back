@@ -9,7 +9,13 @@ const userSchema = new mongoose.Schema({
     minlength: 2,
     maxlength: 30,
     validate: {
-      validator: (v) => validator.isAlpha(v),
+      validator(v) {
+        return (
+          validator.isAlpha(v, 'en-US', { ignore: ' -' })
+          || validator.isAlpha(v, 'ru-RU', { ignore: ' -' })
+        );
+      },
+      message: 'Значение должно состоять из символов',
     },
     default: 'JacquesIvesCousteau',
   },
@@ -18,7 +24,13 @@ const userSchema = new mongoose.Schema({
     minlength: 2,
     maxlength: 30,
     validate: {
-      validator: (v) => validator.isAlpha(v),
+      validator(v) {
+        return (
+          validator.isAlpha(v, 'en-US', { ignore: ' -' })
+          || validator.isAlpha(v, 'ru-RU', { ignore: ' -' })
+        );
+      },
+      message: 'Значение должно состоять из символов',
     },
     default: 'Researcher',
   },

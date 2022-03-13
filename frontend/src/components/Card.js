@@ -10,7 +10,6 @@ function Card(props) {
   const cardDeleteButtonClassName = `place__trash-button link-effect ${
     isOwn ? "" : "place__trash-button_inactive"
   }`;
-
   const isLiked = props.card.likes.some((i) => i._id === currentUser._id);
   const cardLikeButtonClassName = `place__like-button ${
     isLiked ? "" : "place__like-button_inactive"

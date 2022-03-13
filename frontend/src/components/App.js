@@ -50,7 +50,7 @@ function App() {
       const jwt = localStorage.getItem("jwt");
       auth.getToken(jwt).then((res) => {
         if (res) {
-          handleLogin(res.data.email);
+          handleLogin(res.email);
           navigate(path);
         }
       });
@@ -73,13 +73,15 @@ function App() {
   }
 
   React.useEffect(() => {
-    Promise.all([api.getUserData(), api.getCardsData()])
-      .then(([userData, cardsData]) => {
-        setCurrentUser(userData);
-        setCards(cardsData);
-      })
-      .catch((err) => console.log(err));
-  }, []);
+    if (isLoggedIn) {
+      Promise.all([api.getUserData(), api.getCardsData()])
+        .then(([userData, cardsData]) => {
+          setCurrentUser(userData);
+          setCards(cardsData);
+        })
+        .catch((err) => console.log(err));
+    };
+  }, [isLoggedIn]);
 
   function handleEditAvatarClick() {
     setAvatarPopupState(!avatarPopupState);

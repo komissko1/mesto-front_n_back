@@ -5,14 +5,14 @@ const NotFoundError = require('../errors/NotFoundError');
 module.exports.getCards = (req, res, next) => {
   Card.find({})
     .populate('owner')
-    .then((cards) => res.send({ data: cards }))
+    .then((cards) => res.send(cards))
     .catch(next);
 };
 
 module.exports.createCard = (req, res, next) => {
   const { name, link } = req.body;
-  Card.create({ name, link, owner: req.user._id })
-    .then((card) => res.status(201).send({ data: card }))
+  Card.create({ name, link, owner: { _id: req.user._id } })
+    .then((card) => res.status(201).send(card))
     .catch(next);
 };
 
@@ -30,6 +30,7 @@ module.exports.deleteCard = (req, res, next) => {
 };
 
 module.exports.setCardLike = (req, res, next) => {
+  console.log(req);
   Card.findByIdAndUpdate(
     { _id: req.params.cardId },
     { $addToSet: { likes: req.user._id } },
@@ -37,7 +38,7 @@ module.exports.setCardLike = (req, res, next) => {
   )
     .populate('likes')
     .orFail()
-    .then((card) => res.status(201).send({ data: card }))
+    .then((card) => res.status(201).send(card))
     .catch(next);
 };
 
@@ -49,6 +50,6 @@ module.exports.deleteCardLike = (req, res, next) => {
   )
     .populate('likes')
     .orFail()
-    .then((card) => res.send({ data: card }))
+    .then((card) => res.send(card))
     .catch(next);
 };

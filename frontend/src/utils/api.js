@@ -1,7 +1,7 @@
-const apiConfig = {
-  baseUrl: "https://mesto.nomoreparties.co/v1/cohort-30/",
+export const apiConfig = {
+  baseUrl: "http://localhost:3000",
   headers: {
-    authorization: "885c2761-9e20-4ba5-8dc0-769b8411ad33",
+    Authorization: `Bearer ${localStorage.getItem('jwt')}`,
     "Content-Type": "application/json",
   },
 };
@@ -9,8 +9,8 @@ const apiConfig = {
 class Api {
   constructor(apiConfig) {
     this._baseUrl = apiConfig.baseUrl;
-    this._cardsUrl = `${apiConfig.baseUrl}cards/`;
-    this._userUrl = `${apiConfig.baseUrl}users/me/`;
+    this._cardsUrl = `${apiConfig.baseUrl}/cards/`;
+    this._userUrl = `${apiConfig.baseUrl}/users/me/`;
     this._headers = apiConfig.headers;
   }
 
@@ -22,21 +22,24 @@ class Api {
   }
 
   getCardsData() {
-    return fetch(this._cardsUrl, { headers: this._headers }).then(
-      this._checkResponse
-    );
+    return fetch(this._cardsUrl, {
+      headers: this._headers,
+      credentials: "include",
+    }).then(this._checkResponse);
   }
 
   getUserData() {
-    return fetch(this._userUrl, { headers: this._headers }).then(
-      this._checkResponse
-    );
+    return fetch(this._userUrl, {
+      credentials: "include",
+      headers: this._headers,
+    }).then(this._checkResponse);
   }
 
   postCardData(newName, newLink) {
     return fetch(this._cardsUrl, {
       method: "POST",
       headers: this._headers,
+      credentials: "include",
       body: JSON.stringify({
         name: newName,
         link: newLink,
@@ -48,6 +51,7 @@ class Api {
     return fetch(this._userUrl, {
       method: "PATCH",
       headers: this._headers,
+      credentials: "include",
       body: JSON.stringify({
         name: newName,
         about: newJob,
@@ -59,6 +63,7 @@ class Api {
     return fetch(`${this._cardsUrl}${itemId}`, {
       method: "DELETE",
       headers: this._headers,
+      credentials: "include",
     }).then(this._checkResponse);
   }
 
@@ -67,6 +72,7 @@ class Api {
     return fetch(`${this._cardsUrl}likes/${itemId}`, {
       method: method,
       headers: this._headers,
+      credentials: "include",
     }).then(this._checkResponse);
   }
 
@@ -74,6 +80,7 @@ class Api {
     return fetch(`${this._userUrl}avatar`, {
       method: "PATCH",
       headers: this._headers,
+      credentials: "include",
       body: JSON.stringify({ avatar: avatarInfo }),
     }).then(this._checkResponse);
   }
