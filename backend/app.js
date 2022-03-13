@@ -6,6 +6,7 @@ require('dotenv').config();
 
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
+const { requestLogger, errorLogger } = require('./middlewares/logger');
 const { login } = require('./controllers/login');
 const { createUser } = require('./controllers/createUser');
 const { auth } = require('./middlewares/auth');
@@ -48,6 +49,7 @@ mongoose.connect('mongodb://localhost:27017/mestodb', {
 });
 
 app.use(express.json());
+app.use(requestLogger);
 
 app.get('/crash-test', () => {
   setTimeout(() => {
@@ -76,7 +78,7 @@ app.use('/cards', auth, require('./routes/cards'));
 app.use((req, res, next) => {
   next(new NotFoundError('Ошибочный путь'));
 });
-
+app.use(errorLogger);
 app.use(errors());
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;
