@@ -69,7 +69,7 @@ function App() {
   };
 
   function handleInfoTooltip(result) {
-    setInfoPopupState({ isOpen: true, result: result });
+    setInfoPopupState({ isOpen: true, result });
   }
 
   React.useEffect(() => {
@@ -138,7 +138,7 @@ function App() {
     setEditPopupState(false);
     setAddPopupState(false);
     setImagePopupState(false);
-    setInfoPopupState({ isOpen: false, result: false });
+    setInfoPopupState({ isOpen: false });
     setSelectedCard({ name: "", link: "" });
   }
 
@@ -234,13 +234,7 @@ function App() {
 
       <InfoTooltip
         name="register"
-        isOpen={infoPopupState.isOpen}
-        icon={infoPopupState.result}
-        message={
-          infoPopupState.result
-            ? "Вы успешно зарегистрировались!"
-            : "Что-то пошло не так! Попробуйте еще раз."
-        }
+        openState={infoPopupState}
         onClose={closeAllPopups}
       />
     </CurrentUserContext.Provider>

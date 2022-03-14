@@ -1,7 +1,7 @@
 .form__save-button_inactive {
-  opacity: 20%;
+  opacity: 0.2;
 }
 
 .form__save-button_inactive:hover {
-  opacity: 20%;
+  opacity: 0.2;
 }

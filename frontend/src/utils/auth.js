@@ -1,18 +1,17 @@
-export const BASE_URL = 'https://mesto-komisarov.nomoredomains.work';
+export const BASE_URL = 'http://localhost:3000';
 
 export const register = (password, email) => {
   return fetch(`${BASE_URL}/signup`, {
     method: "POST",
     headers: {
       'Accept': "application/json",
-      "Content-Type": "application/json",
+      'Content-Type': "application/json",
     },
-    credentials: 'include',
     body: JSON.stringify({ password, email }),
   })
     .then((res) => {
       try {
-        if (res.status === 400 || res.status === 401) {
+        if (res.status === 400 || res.status === 401 || res.status === 409 ) {
           return false;
         } else {
           return res.json();
@@ -21,8 +20,6 @@ export const register = (password, email) => {
         return err;
       }
     })
-    .then((data) => data)
-    .catch((err) => console.log(err));
 };
 
 export const authorize = (password, email) => {

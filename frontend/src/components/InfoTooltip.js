@@ -5,13 +5,16 @@ import noIcon from '../images/icon-no.svg';
 
 function InfoTooltip(props) {
   return (
-    <Popup isOpen={props.isOpen} name={props.name} onClose={props.onClose}>
+    <Popup isOpen={props.openState.isOpen} name={props.name} onClose={props.onClose}>
         <img
           className="popup__icon"
-          src={props.icon ? yesIcon : noIcon}
+          src={props.openState.result ? yesIcon : noIcon}
           alt={props.name}
         />
-      <p className="popup__title popup__title_centered">{props.message}</p>
+      <p className="popup__title popup__title_centered">{props.openState.result
+            ? "Вы успешно зарегистрировались!"
+            : "Что-то пошло не так! Попробуйте еще раз."}
+      </p>
     </Popup>
   );
 }

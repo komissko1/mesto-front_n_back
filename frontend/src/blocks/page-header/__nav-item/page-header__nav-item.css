@@ -9,7 +9,7 @@
   text-decoration: none;
   color: #fff;
   justify-content: right;
-  opacity: 100%;
+  opacity: 1;
   transition: opacity .5s ease-in-out;
 }
 

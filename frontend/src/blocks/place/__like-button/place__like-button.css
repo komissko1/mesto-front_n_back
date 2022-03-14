@@ -12,6 +12,6 @@
 }
 
 .place__like-button:hover {
-  opacity: 50%;
+  opacity: 0.5;
 }
 

@@ -16,13 +16,15 @@ function Register(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    auth.register(values.password, values.email).then((res) => {
-      if (res) {
+    auth.register(values.password, values.email)
+    .then((res) => {
+      if (res.email) {
         navigate("/sign-in");
         props.onResponce(true);
       } else{
         props.onResponce(false)};
-    });
+      })
+    .catch((err) => console.log(err));
   };
 
   return (

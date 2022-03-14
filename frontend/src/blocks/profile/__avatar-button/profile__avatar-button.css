@@ -21,7 +21,7 @@
 }
 
 .profile__avatar-button:hover {
-opacity: 80%;
+opacity: 0.8;
 }
 
 @media screen and (max-width: 1024px) {
