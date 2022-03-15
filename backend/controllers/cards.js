@@ -37,7 +37,7 @@ module.exports.setCardLike = (req, res, next) => {
     { new: true },
   )
     .orFail()
-    .then((card) => card.populate('likes'))
+    .then((card) => card.populate(['owner', 'likes']))
     .then((card) => res.status(201).send(card))
     .catch(next);
 };
@@ -48,7 +48,7 @@ module.exports.deleteCardLike = (req, res, next) => {
     { $pull: { likes: req.user._id } },
     { new: true },
   )
-    .populate('likes')
+    .populate(['owner', 'likes'])
     .orFail()
     .then((card) => res.send(card))
     .catch(next);

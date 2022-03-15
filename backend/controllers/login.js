@@ -11,7 +11,6 @@ module.exports.login = (req, res, next) => {
       if (!user) { throw new AuthorizationError('Неверные данные пользователя'); }
       const token = jwt.sign(
         { _id: user._id },
-        'JWT_KEY',
         NODE_ENV === 'production' ? JWT_SECRET : 'JWT_KEY',
         {
           expiresIn: '7d',
