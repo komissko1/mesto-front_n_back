@@ -7,7 +7,6 @@ class Api {
     this._baseUrl = apiConfig.baseUrl;
     this._cardsUrl = `${apiConfig.baseUrl}/cards/`;
     this._userUrl = `${apiConfig.baseUrl}/users/me/`;
-    this._headers = apiConfig.headers;
   }
 
   _checkResponse(res) {
@@ -29,7 +28,6 @@ class Api {
   getUserData() {
     return fetch(this._userUrl, {
       credentials: "include",
-      // headers: this._headers,
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${localStorage.getItem('jwt')}`},

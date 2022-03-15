@@ -2,6 +2,8 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/user');
 const AuthorizationError = require('../errors/AuthorizationError');
 
+const { NODE_ENV, JWT_SECRET } = process.env;
+
 module.exports.login = (req, res, next) => {
   const { email, password } = req.body;
   return User.findUserByLoginData({ email, password })
@@ -10,6 +12,7 @@ module.exports.login = (req, res, next) => {
       const token = jwt.sign(
         { _id: user._id },
         'JWT_KEY',
+        NODE_ENV === 'production' ? JWT_SECRET : 'JWT_KEY',
         {
           expiresIn: '7d',
         },

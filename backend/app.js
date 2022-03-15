@@ -2,7 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const { celebrate, Joi, errors } = require('celebrate');
 
-require('dotenv').config();
+require('dotenv').config({ path: '../.env' });
 
 const cookieParser = require('cookie-parser');
 const cors = require('cors');

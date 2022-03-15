@@ -4,7 +4,7 @@ const NotFoundError = require('../errors/NotFoundError');
 
 module.exports.getCards = (req, res, next) => {
   Card.find({})
-    .populate('owner')
+    .populate(['owner', 'likes'])
     .then((cards) => res.send(cards))
     .catch(next);
 };
@@ -36,8 +36,8 @@ module.exports.setCardLike = (req, res, next) => {
     { $addToSet: { likes: req.user._id } },
     { new: true },
   )
-    .populate('likes')
     .orFail()
+    .then((card) => card.populate('likes'))
     .then((card) => res.status(201).send(card))
     .catch(next);
 };
