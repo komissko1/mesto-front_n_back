@@ -1,5 +1,5 @@
 const apiConfig = {
-  baseUrl: 'http://localhost:3000',
+  baseUrl: 'https://mesto-komisarov.nomoredomains.work',
 };
 
 class Api {
