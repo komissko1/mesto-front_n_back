@@ -17,7 +17,7 @@ const app = express();
 app.use(cookieParser());
 
 app.use(cors({
-  origin: 'http://localhost:3001',
+  origin: 'https://mesto-komisarov.students.nomoredomains.work',
   credentials: true,
 }));
 
